@@ -1,0 +1,33 @@
+const apiKey = process.env.REACT_APP_API_KEY;
+
+export const fetchTeamData = () => {
+  fetch(`https://api.pandascore.co/lol/teams?filter[location]=US&token=${apiKey}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+}
+
+export const fetchTournamentData = () => {
+  fetch(`https://api.pandascore.co/lol/tournaments?filter[name]=Group A, Group B&token=${apiKey}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+}
+
+export const fetchMatchData = () => {
+  fetch(`https://api.pandascore.co/lol/matches/past?token=${apiKey}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+}
+
+export const fetchGameData = () => {
+  fetch(`https://api.pandascore.co/lol/matches/past?token=${apiKey}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+}
+
+//match id: 548760
+
+//game id: 229700
