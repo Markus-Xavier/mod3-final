@@ -1,4 +1,12 @@
 .header-container {
   height: 88px;
   background-color: #382874;
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-img {
+  width: 40px;
+  height: 24px;
+  margin-left: 26px;
 }
