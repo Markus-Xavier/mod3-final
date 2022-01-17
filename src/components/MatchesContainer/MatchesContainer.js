@@ -15,8 +15,12 @@ export function MatchesContainer () {
     seriesData
       .then(data => determinePath(data[0]))
       .catch(error => console.log(error));
-    setDog(matchCards());
   }, []);
+
+  useEffect(() => {
+    console.log('dog boy')
+    setDog(matchCards())
+  }, [matchData])
 
   const determinePath = (seriesData) => {
     //from series data I wanna get the tournament IDs
@@ -32,7 +36,7 @@ export function MatchesContainer () {
           .then(sortedCombinedData => {
             const matchIds = getDataIds(sortedCombinedData).join(', ');
             fetchMatchData(matchIds)
-              .then(setMatchData);
+              .then(setMatchData)
           })
           .catch(error => console.log(error));
         break;
@@ -85,7 +89,7 @@ export function MatchesContainer () {
     if(matchData) {
       return matchData.map(data => {
         return (
-          <MatchCard teams={data.opponents} winner_id={data.winner_id}/>
+          <MatchCard teams={data.opponents} winner_id={data.winner_id} key={data.id}/>
         )
       })
     }

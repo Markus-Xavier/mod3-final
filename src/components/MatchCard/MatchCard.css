@@ -1,3 +1,18 @@
 .match-container {
-  
+  width: 846px;
+  height: 106px;
+  border: black solid 3px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-logo {
+  height: 90px;
+  width: 90px;
+}
+
+.match-content-container {
+  display: flex;
 }
