@@ -7,11 +7,15 @@ import { fetchMatchData, getSeriesData, getTournamentData } from "../../ApiCalls
 export function MatchesContainer () {
   const { pathname } = useLocation();
   const [matchData, setMatchData] = useState(null);
+  const [dog, setDog] = useState(null);
 
   useEffect(() => {
+    console.log('dog');
     const seriesData = getSeriesData();
-    seriesData.then(data => determinePath(data[0]))
-    
+    seriesData
+      .then(data => determinePath(data[0]))
+      .catch(error => console.log(error));
+    setDog(matchCards());
   }, []);
 
   const determinePath = (seriesData) => {
@@ -25,7 +29,12 @@ export function MatchesContainer () {
           .then(getPastMatchData)
           .then(pastMatchData => combineData(pastMatchData))
           .then(combinedData => combinedData.sort(dateSort))
-          .then(setMatchData)
+          .then(sortedCombinedData => {
+            const matchIds = getDataIds(sortedCombinedData).join(', ');
+            fetchMatchData(matchIds)
+              .then(setMatchData);
+          })
+          .catch(error => console.log(error));
         break;
       case '/upcoming':
         console.log('upcoming');
@@ -72,17 +81,19 @@ export function MatchesContainer () {
     }, []);
   }
 
-  // const matchCards = () => {
-  //   matchData.map(data => {
-  //     return (
-  //       <MatchCard />
-  //     )
-  //   })
-  // }
+  const matchCards = () => {
+    if(matchData) {
+      return matchData.map(data => {
+        return (
+          <MatchCard teams={data.opponents} winner_id={data.winner_id}/>
+        )
+      })
+    }
+  }
 
   return (
     <section className='matches-container'>
-      
+      {dog}
     </section>
   )
 }
