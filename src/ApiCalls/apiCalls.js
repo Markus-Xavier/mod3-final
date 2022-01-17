@@ -14,8 +14,8 @@ export const getTournamentData = (tournamentIds) => {
     .catch(error => console.log(error))
 }
 
-export const fetchMatchData = () => {
-  fetch(`https://api.pandascore.co/lol/matches/past?token=${apiKey}`)
+export const fetchMatchData = (id) => {
+  fetch(`https://api.pandascore.co/lol/matches/past?filter[id]=${id}&token=${apiKey}`)
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.log(error));

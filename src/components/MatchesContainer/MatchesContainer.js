@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import './MatchesContainer.css';
 import { MatchCard } from "../MatchCard/MatchCard";
-import { getSeriesData, getTournamentData } from "../../ApiCalls/apiCalls";
+import { fetchMatchData, getSeriesData, getTournamentData } from "../../ApiCalls/apiCalls";
 
 export function MatchesContainer () {
   const { pathname } = useLocation();
@@ -16,13 +16,11 @@ export function MatchesContainer () {
 
   const determinePath = (seriesData) => {
     //from series data I wanna get the tournament IDs
-    const tournamentIds = getTournamentIds(seriesData).join(', ');
+    const tournamentIds = getDataIds(seriesData.tournaments).join(', ');
     const tournamentData = getTournamentData(tournamentIds)
 
     switch (pathname) {
       case '/match-history':
-        console.log('match-history');
-        //match history logic
         tournamentData
           .then(getPastMatchData)
           .then(pastMatchData => combineData(pastMatchData))
@@ -38,10 +36,9 @@ export function MatchesContainer () {
     }
   }
 
-  const getTournamentIds = (series) => {
-    const tournaments = series.tournaments
-    const tournamentIds = tournaments.map(tournament => tournament.id);
-    return tournamentIds
+  const getDataIds = (dataSet) => {
+    const dataSetIds = dataSet.map(data=> data.id);
+    return dataSetIds
   }
 
   const dateCompare = (date1, date2) => {
@@ -74,6 +71,14 @@ export function MatchesContainer () {
       }
     }, []);
   }
+
+  // const matchCards = () => {
+  //   matchData.map(data => {
+  //     return (
+  //       <MatchCard />
+  //     )
+  //   })
+  // }
 
   return (
     <section className='matches-container'>
