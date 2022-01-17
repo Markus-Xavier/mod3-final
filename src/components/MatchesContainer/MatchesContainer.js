@@ -6,7 +6,7 @@ import { getSeriesData, getTournamentData } from "../../ApiCalls/apiCalls";
 
 export function MatchesContainer () {
   const { pathname } = useLocation();
-  const [series, setSeries] = useState(null);
+  const [matchData, setMatchData] = useState(null);
 
   useEffect(() => {
     const seriesData = getSeriesData();
@@ -15,15 +15,17 @@ export function MatchesContainer () {
   }, []);
 
   const determinePath = (seriesData) => {
-    console.log(seriesData);
     //from series data I wanna get the tournament IDs
     const tournamentIds = getTournamentIds(seriesData).join(', ');
-    console.log(getTournamentData(tournamentIds));
+    const tournamentData = getTournamentData(tournamentIds)
 
     switch (pathname) {
       case '/match-history':
         console.log('match-history');
         //match history logic
+        tournamentData
+          .then(getPastMatchData)
+          .then(pastMatchData => setMatchData(pastMatchData));
         break;
       case '/upcoming':
         console.log('upcoming');
@@ -40,10 +42,22 @@ export function MatchesContainer () {
     return tournamentIds
   }
 
+  const dateCompare = (date1, date2) => {
+    //returns true if date 2 is later otherwise returns false
+    return date2 > date1;
+  }
 
+  const filterDataByDates = (dataSet) => {
+    return dataSet.filter(data => {
+      const tournamentDate = new Date(data.begin_at);
+      return !dateCompare(Date.now(), tournamentDate);
+    });
+  }
 
-
-
+  const getPastMatchData = (tournaments) => {
+    const filteredPastTournaments = filterDataByDates(tournaments);
+    return filteredPastTournaments.map(tournament => filterDataByDates(tournament.matches));
+  }
 
   return (
     <section className='matches-container'>
