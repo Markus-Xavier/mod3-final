@@ -25,7 +25,9 @@ export function MatchesContainer () {
         //match history logic
         tournamentData
           .then(getPastMatchData)
-          .then(pastMatchData => setMatchData(pastMatchData));
+          .then(pastMatchData => combineData(pastMatchData))
+          .then(combinedData => combinedData.sort(dateSort))
+          .then(setMatchData)
         break;
       case '/upcoming':
         console.log('upcoming');
@@ -47,6 +49,10 @@ export function MatchesContainer () {
     return date2 > date1;
   }
 
+  const dateSort = (a, b) => {
+    return new Date(a.begin_at) - new Date(b.begin_at);
+  }
+
   const filterDataByDates = (dataSet) => {
     return dataSet.filter(data => {
       const tournamentDate = new Date(data.begin_at);
@@ -57,6 +63,16 @@ export function MatchesContainer () {
   const getPastMatchData = (tournaments) => {
     const filteredPastTournaments = filterDataByDates(tournaments);
     return filteredPastTournaments.map(tournament => filterDataByDates(tournament.matches));
+  }
+
+  const combineData = (data) => {
+    return data.reduce((prev, data) => {
+      if(!prev.length) {
+        return [...data]
+      }  else {
+        return [...prev, ...data];
+      }
+    }, []);
   }
 
   return (
