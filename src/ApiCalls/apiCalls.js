@@ -7,8 +7,8 @@ export const fetchTeamData = () => {
     .catch(error => console.log(error))
 }
 
-export const fetchTournamentData = () => {
-  fetch(`https://api.pandascore.co/lol/tournaments?filter[name]=Group A, Group B&token=${apiKey}`)
+export const getTournamentData = (tournamentIds) => {
+  return fetch(`https://api.pandascore.co/lol/tournaments?filter[id]=${tournamentIds}&token=${apiKey}`)
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.log(error))

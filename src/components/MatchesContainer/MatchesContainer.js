@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import './MatchesContainer.css';
 import { MatchCard } from "../MatchCard/MatchCard";
-import { getSeriesData } from "../../ApiCalls/apiCalls";
+import { getSeriesData, getTournamentData } from "../../ApiCalls/apiCalls";
 
 export function MatchesContainer () {
   const { pathname } = useLocation();
@@ -17,7 +17,9 @@ export function MatchesContainer () {
   const determinePath = (seriesData) => {
     console.log(seriesData);
     //from series data I wanna get the tournament IDs
-    console.log(getTournamentIds(seriesData));
+    const tournamentIds = getTournamentIds(seriesData).join(', ');
+    console.log(getTournamentData(tournamentIds));
+
     switch (pathname) {
       case '/match-history':
         console.log('match-history');
@@ -37,6 +39,7 @@ export function MatchesContainer () {
     const tournamentIds = tournaments.map(tournament => tournament.id);
     return tournamentIds
   }
+
 
 
 
