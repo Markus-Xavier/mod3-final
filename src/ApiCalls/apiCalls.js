@@ -28,6 +28,13 @@ export const fetchGameData = () => {
     .catch(error => console.log(error));
 }
 
+export const getSeriesData = () => {
+  return fetch(`https://api.pandascore.co/lol/series?token=${apiKey}&filter[tier]=a`)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.log(error));
+}
+
 //match id: 548760
 
 //game id: 229700
