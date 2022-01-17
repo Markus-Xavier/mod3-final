@@ -16,6 +16,8 @@ export function MatchesContainer () {
 
   const determinePath = (seriesData) => {
     console.log(seriesData);
+    //from series data I wanna get the tournament IDs
+    console.log(getTournamentIds(seriesData));
     switch (pathname) {
       case '/match-history':
         console.log('match-history');
@@ -28,6 +30,12 @@ export function MatchesContainer () {
       default:
         break;
     }
+  }
+
+  const getTournamentIds = (series) => {
+    const tournaments = series.tournaments
+    const tournamentIds = tournaments.map(tournament => tournament.id);
+    return tournamentIds
   }
 
 
