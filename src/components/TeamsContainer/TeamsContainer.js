@@ -3,9 +3,9 @@ import './TeamsContainer.css';
 import { TeamCard } from "../TeamCard/TeamCard";
 
 export function TeamsContainer({ tournamentData, changeFavoriteTeam }) {
-  let groupCards = (<p>No team data...</p>);
+  let groupCards = (<p>Loading team data...</p>);
 
-  if (tournamentData.length) {
+  if (tournamentData && tournamentData.length) {
     groupCards = tournamentData.map(tournament => {
       if (!tournament.teams.length) {
         return null;

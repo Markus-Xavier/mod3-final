@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 
 export function Header ({favoriteTeamData}) {
   let favoriteTeamImg = (<div>No Favorite Team Selected...</div>);
-  console.log(favoriteTeamData)
 
-  if (favoriteTeamData.length) {
+  if (favoriteTeamData && favoriteTeamData.length) {
     favoriteTeamImg = (
       <img className='fav-team-img' src={favoriteTeamData[0].image_url} alt={`${favoriteTeamData.name} Logo`}/>
     )

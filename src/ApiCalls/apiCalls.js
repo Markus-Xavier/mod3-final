@@ -10,7 +10,10 @@ export const getTournamentData = () => {
 export const getFavoriteTeamMatchHistory = (favoriteTeam) => {
   return fetch(`https://api.pandascore.co/lol/matches?token=${apiKey}&filter[opponent_id]=${favoriteTeam}&filter[serie_id]=4260&filter[status]=finished`)
     .then(response => response.json())
-    .then(data => data)
+    .then(data => {
+      console.log(data)
+      return data;
+    } )
     .catch(error => console.log(error));
 }
 

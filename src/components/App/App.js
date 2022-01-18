@@ -28,6 +28,7 @@ export default function App() {
         .then(setFavoriteTeamMatchData);
 
       getFavoriteTeam(favoriteTeam)
+        .then(data => data)
         .then(setFavoriteTeamData);
     }
   }, [favoriteTeam]);
@@ -56,6 +57,9 @@ export default function App() {
         <Route path='/upcoming' element={
           <MatchesContainer />
         }/>
+        <Route path='*' element={
+          <div>You've Wandered Too Far Into the Jungle... 404 Page Not Found</div>
+        } />
       </Routes>
     </main>
   );

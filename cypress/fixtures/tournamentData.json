@@ -1,0 +1,24 @@
+[{
+  "name": "Group B",
+  "id": 1,
+  "teams": [{
+    "id": 1,
+    "acronym": "CLG",
+    "name": "Counter Logic Gaming",
+    "image_url": "https://cdn.pandascore.co/images/team/image/389/counter_logic_gaminglogo_square.png"
+  }],
+  "slug": "clg_lcs_team"
+  }, 
+  {
+    "name": "Group A",
+    "id": 2,
+    "teams": [{
+      "id": 2,
+      "acronym": "C9",
+      "name": "Cloud 9",
+      "image_url": "https://cdn.pandascore.co/images/team/image/1097/cloud9-gnd9b0gn.png"
+    }],
+    "slug": "c9_lcs_team"
+  }]
+
+
