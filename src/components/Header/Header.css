@@ -1,4 +1,37 @@
+li {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
 .header-container {
   height: 88px;
   background-color: #382874;
+  display: flex;
+  align-items: center;
+  padding-left: 26px;
+  padding-right: 26px;
+}
+
+.links-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.link-button:hover {
+  color: #6557FF;
+}
+
+.fav-team-img {
+  height: 48px;
+  width: 48px;
+}
+
+.nav-img {
+  width: 24px;
+  height: 24px;
+}
+
+.site-logo {
+  height: 48px;
+  width: 48px;
 }

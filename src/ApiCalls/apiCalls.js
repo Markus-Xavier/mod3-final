@@ -1,33 +1,37 @@
 const apiKey = process.env.REACT_APP_API_KEY;
+const baseUrl = 'https://api.pandascore.co/lol/';
 
-export const fetchTeamData = () => {
-  fetch(`https://api.pandascore.co/lol/teams?filter[location]=US&token=${apiKey}`)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
+const eatConsoleError = (error) => {
+  throw error;
 }
 
-export const fetchTournamentData = () => {
-  fetch(`https://api.pandascore.co/lol/tournaments?filter[name]=Group A, Group B&token=${apiKey}`)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
+const checkIfOk = (response) => {
+  if (response.ok) {
+    return response.json()
+  }
+  throw new Error('Something went wrong...')
 }
 
-export const fetchMatchData = () => {
-  fetch(`https://api.pandascore.co/lol/matches/past?token=${apiKey}`)
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.log(error));
+export const getTournamentData = () => {
+  return fetch(`${baseUrl}tournaments?token=${apiKey}&filter[name]=Group A, Group B, Playoffs&filter[tier]=&filter[serie_id]=4260`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
 }
 
-export const fetchGameData = () => {
-  fetch(`https://api.pandascore.co/lol/matches/past?token=${apiKey}`)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
+export const getFavoriteTeamMatchHistory = (favoriteTeam) => {
+  return fetch(`${baseUrl}matches?token=${apiKey}&filter[opponent_id]=${favoriteTeam}&filter[serie_id]=4260&filter[status]=finished`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
 }
 
-//match id: 548760
+export const getFavoriteTeam = (favoriteTeamId) => {
+  return fetch(`${baseUrl}teams?token=${apiKey}&filter[id]=${favoriteTeamId}`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
+}
 
-//game id: 229700
+export const brokenApiCall = () => {
+  return fetch(`${baseUrl}teams`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
+}

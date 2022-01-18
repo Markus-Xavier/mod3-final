@@ -1,0 +1,31 @@
+[{
+  "id": 1,
+  "opponents": [
+    {"opponent": {"acronym": "C9",
+    "id": 2,
+    "image_url": "https://cdn.pandascore.co/images/team/image/1097/cloud9-gnd9b0gn.png",
+    "name" : "Cloud 9",
+    "slug": "cloud9"}}, 
+    {"opponent": {
+      "id": 1,
+      "acronym": "CLG",
+      "name": "Counter Logic Gaming",
+      "image_url": "https://cdn.pandascore.co/images/team/image/389/counter_logic_gaminglogo_square.png"}}
+    ],
+    "winner_id": 2
+}, {
+  "id": 1,
+  "opponents": [
+    {"opponent": {"acronym": "C9",
+    "id": 2,
+    "image_url": "https://cdn.pandascore.co/images/team/image/1097/cloud9-gnd9b0gn.png",
+    "name" : "Cloud 9",
+    "slug": "cloud9"}}, 
+    {"opponent": {
+      "id": 1,
+      "acronym": "CLG",
+      "name": "Counter Logic Gaming",
+      "image_url": "https://cdn.pandascore.co/images/team/image/389/counter_logic_gaminglogo_square.png"}}
+    ],
+    "winner_id": 1
+}]
