@@ -5,7 +5,7 @@ import { TeamCard } from "../TeamCard/TeamCard";
 export function TeamsContainer({ tournamentData, changeFavoriteTeam }) {
   let groupCards = (<p>No team data...</p>);
   
-  if (tournamentData && tournamentData.length) {
+  if (tournamentData.length) {
     console.log(tournamentData);
     groupCards = tournamentData.map(tournament => {
       if (!tournament.teams.length) {

@@ -40,7 +40,14 @@ export const getTournamentData = () => {
   return fetch(`https://api.pandascore.co/lol/tournaments?token=${apiKey}&filter[name]=Group A, Group B, Playoffs&filter[tier]=&filter[serie_id]=4260`)
     .then(response => response.json())
     .then(data => data.reverse())
-    .catch(error => console.log(error))
+    .catch(error => console.log(error));
+}
+
+export const getFavoriteTeamMatchHistory = (favoriteTeam) => {
+  return fetch(`https://api.pandascore.co/lol/matches?token=${apiKey}&filter[opponent_id]=${favoriteTeam}&filter[serie_id]=4260&filter[status]=finished`)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.log(error));
 }
 
 //match id: 548760
