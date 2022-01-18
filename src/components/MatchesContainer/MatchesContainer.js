@@ -3,12 +3,20 @@ import './MatchesContainer.css';
 import { MatchCard } from "../MatchCard/MatchCard";
 
 export function MatchesContainer ({ favoriteTeam, matchData }) {
+  const sortTeams = (a) => {
+    if (a.opponent.id.toString() === favoriteTeam) {
+      return -1;
+    }
+    return 0;
+  };
 
   let matches = (<p>No match data...</p>); 
   
   if(matchData.length) {
     matches = matchData.map(match => {
-      return <MatchCard key={match.id} teams={match.opponents} winner_id={match.winner_id} id={match.id} favoriteTeam={favoriteTeam}/>
+      const isWin = match.winner_id.toString() === favoriteTeam;
+      const sortedOpponents = match.opponents.sort(sortTeams);
+      return <MatchCard key={match.id} teams={sortedOpponents} isWin={isWin} id={match.id}/>
     });
   }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import './MatchCard.css';
 
-export function MatchCard ({ teams, winner_id, id, favoriteTeam }) {
+export function MatchCard ({ teams, isWin, id}) {
   return (
     <article className='match-container'>
       <div className='match-content-container'>
