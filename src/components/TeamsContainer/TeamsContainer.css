@@ -1,18 +1,36 @@
-.teams-content-container {
-  background-color: #191137;
-  min-height: 100vh;
-}
-
 ul {
   list-style-type: none;
+}
+
+h2 {
+  color: white;
+  align-self: flex-start;
 }
 
 .teams-container {
   display:flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 128px;
+  padding-right: 128px;
+  padding-bottom: 80px;
 }
 
 .teams-content {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: white;
+}
+
+.vl {
+  border-left: 2px solid #6557FF;
+  height: 500px;
+  margin-right: 16px;
+}
+
+.tournament-name {
+  color: white;
+  align-self: flex-start;
+  font-size: 1em;
 }

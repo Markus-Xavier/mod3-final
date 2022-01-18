@@ -1,6 +1,4 @@
 .matches-container {
-  background-color: #191137;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

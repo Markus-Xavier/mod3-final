@@ -7,9 +7,9 @@ export function TeamCard({acronym, name, id, image_url, changeFavoriteTeam}) {
   };
 
   return (
-    <li key={id} onClick={handleOnClick}>
-      <img className='team-logo' src={image_url} alt={`${name} Logo`} />
-      <div>{acronym}</div>
+    <li key={id} onClick={handleOnClick} className='hover-animation'>
+      <img className='team-logo-card' src={image_url} alt={`${name} Logo`} />
+      <div className='team-acronym'>{acronym}</div>
       <div>{name}</div>
     </li>
   )

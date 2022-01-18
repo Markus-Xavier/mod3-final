@@ -11,7 +11,7 @@ export function TeamsContainer({ tournamentData, changeFavoriteTeam }) {
         return null;
       }
 
-      const header = (<h2>{tournament.name}</h2>);
+      const header = (<div className='tournament-name'><span className='vl'/>{tournament.name}</div>);
       const teamCards = tournament.teams.map(team => {
         return <TeamCard key={team.id} changeFavoriteTeam={changeFavoriteTeam} acronym={team.acronym} name={team.name} id={team.id} image_url={team.image_url}/>
       });

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { getTournamentData, getFavoriteTeamMatchHistory  } from '../../ApiCalls/apiCalls';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { getTournamentData, getFavoriteTeamMatchHistory, getFavoriteTeam  } from '../../ApiCalls/apiCalls';
 import './App.css';
 import { Header } from '../Header/Header';
 import { MatchesContainer } from '../MatchesContainer/MatchesContainer';
@@ -8,6 +8,7 @@ import { TeamsContainer } from '../TeamsContainer/TeamsContainer';
 
 export default function App() {
   const [favoriteTeam, setFavoriteTeam] = useState(-1);
+  const [favoriteTeamData, setFavoriteTeamData] = useState([]);
   const [tournamentData, setTournamentData] = useState([]);
   const [favoriteTeamMatchData, setFavoriteTeamMatchData] = useState([]);
 
@@ -25,6 +26,9 @@ export default function App() {
     if (favoriteTeam) {
       getFavoriteTeamMatchHistory(favoriteTeam)
         .then(setFavoriteTeamMatchData);
+
+      getFavoriteTeam(favoriteTeam)
+        .then(setFavoriteTeamData);
     }
   }, [favoriteTeam]);
 
@@ -35,13 +39,19 @@ export default function App() {
 
   return (
     <main className="App">
-      <Header />
+      <Header favoriteTeamData={favoriteTeamData}/>
       <Routes>
       <Route path='/' element={
-        <TeamsContainer tournamentData={tournamentData} changeFavoriteTeam={changeFavoriteTeam} />
+        <>
+          <h2 className='location-name'><span className='vl'/>Teams</h2>
+          <TeamsContainer tournamentData={tournamentData} changeFavoriteTeam={changeFavoriteTeam} />
+        </>
       }/>
         <Route path='/match-history' element={
-          <MatchesContainer matchData={favoriteTeamMatchData} favoriteTeam={favoriteTeam}/>
+          <>
+            <h2 className='location-name'><span className='vl'/>Match History</h2>
+            <MatchesContainer matchData={favoriteTeamMatchData} favoriteTeam={favoriteTeam}/>
+          </>
         }/>
         <Route path='/upcoming' element={
           <MatchesContainer />
