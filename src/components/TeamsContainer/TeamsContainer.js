@@ -2,49 +2,36 @@ import React from "react";
 import './TeamsContainer.css';
 import { TeamCard } from "../TeamCard/TeamCard";
 
-export function Teams({ allTeams }) {
-  console.log(allTeams);
-  const groupARef = ['C9', '100', 'TSM', 'FLY', 'GG'];
-  const groupBRef = ['CLG', 'TL', 'EG', 'IMT', 'DIG'];
+export function TeamsContainer({ tournamentData, changeFavoriteTeam }) {
+  let groupCards = (<p>No team data...</p>);
+  
+  if (tournamentData && tournamentData.length) {
+    console.log(tournamentData);
+    groupCards = tournamentData.map(tournament => {
+      if (!tournament.teams.length) {
+        return null;
+      }
 
-  // const buildGroupCards = () => {
-  //   if (!allTeams) {
-  //     return (
-  //       <div>No team data</div>
-  //     ) 
-  //   }
+      const header = (<h2>{tournament.name}</h2>);
+      const teamCards = tournament.teams.map(team => {
+        return <TeamCard key={team.id} changeFavoriteTeam={changeFavoriteTeam} acronym={team.acronym} name={team.name} id={team.id} image_url={team.image_url}/>
+      })
 
-  //   console.log(allTeams.reduce((teamGroups, team) => {
-  //     if(groupARef.includes(team.acronym)) {
-  //       console.log(teamGroups.groupA)
-  //     }
-  //   }, {groupA: [], groupB: []}))
-  // }
-
-  let groupCards = (<div>No team data</div>);
-
-  if (allTeams) {
-        allTeams.reduce((teamGroups, team) => {
-      if(groupARef.includes(team.acronym)) {
-        teamGroups.groupA.push(<TeamCard acronym={team.acronym}/>)
-      } else {
-        teamGroups.groupB.push(<TeamCard acronym={team.acronym}/>)
-      } 
-      return teamGroups;
-    }, {groupA: [], groupB: []})
+      return (
+        <section key={tournament.slug} className='teams-container'>
+          {header}
+          <ul className='teams-content'>
+            {teamCards}
+          </ul>
+        </section>
+      )
+    }) 
   }
+
 
   return (
     <section className='teams-content-container'>
       {groupCards}
-      <div>
-        <h1>Group A</h1>
-        {groupCards.groupA}
-      </div>
-      <div>
-        <h1>Group B</h1>
-        {groupCards.groupB}
-      </div>
     </section>
   )
 }
