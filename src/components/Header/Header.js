@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import './Header.css';
 import { Link } from "react-router-dom";
+import lcs from '../../assets/images/LCS_1.png';
 
 export function Header ({favoriteTeamData}) {
   let favoriteTeamImg = (<div>No Favorite Team Selected...</div>);
@@ -14,6 +15,7 @@ export function Header ({favoriteTeamData}) {
 
   return (
     <header className='header-container'>
+      <img className='site-logo' src={lcs}/>
       <ul className='links-container'>
         <Link to='/'>
           <li className='link-button'>Teams</li>
