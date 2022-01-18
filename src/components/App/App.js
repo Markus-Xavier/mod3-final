@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { fetchTournamentData, fetchMatchData, fetchTeamData, fetchGameData, getSeriesData } from '../../ApiCalls/apiCalls';
+import { fetchTournamentData, fetchMatchData, fetchTeamData, fetchGameData, getSeriesData, getTournamentTeamData } from '../../ApiCalls/apiCalls';
 import './App.css';
 import { Header } from '../Header/Header';
 import { MatchesContainer } from '../MatchesContainer/MatchesContainer';
@@ -11,6 +11,7 @@ export default function App() {
   const [allTeams, setAllTeams] = useState(null);
 
   useEffect(() => {
+    getTournamentTeamData();
     fetchTeamData()
       .then(setAllTeams)
   }, [])

@@ -38,7 +38,6 @@ export function MatchesContainer ({ favoriteTeam }) {
             fetchMatchData(matchIds)
               .then(filterByFavoriteTeam)
               .then(setMatchData)
-
           })
           .catch(error => console.log(error));
         break;

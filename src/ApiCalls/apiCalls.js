@@ -36,6 +36,13 @@ export const getSeriesData = () => {
     .catch(error => console.log(error));
 }
 
+export const getTournamentTeamData = () => {
+  return fetch(`https://api.pandascore.co/lol/tournaments?token=${apiKey}&filter[name]=Group A, Group B, Playoffs&filter[tier]=&filter[serie_id]=4260`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+}
+
 //match id: 548760
 
 //game id: 229700

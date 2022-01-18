@@ -7,23 +7,44 @@ export function Teams({ allTeams }) {
   const groupARef = ['C9', '100', 'TSM', 'FLY', 'GG'];
   const groupBRef = ['CLG', 'TL', 'EG', 'IMT', 'DIG'];
 
-  const buildGroupCards = () => {
-    if (!allTeams) {
-      return (
-        <div>No team data</div>
-      ) 
-    }
+  // const buildGroupCards = () => {
+  //   if (!allTeams) {
+  //     return (
+  //       <div>No team data</div>
+  //     ) 
+  //   }
 
-    allTeams.reduce((teamGroups, team) => {
+  //   console.log(allTeams.reduce((teamGroups, team) => {
+  //     if(groupARef.includes(team.acronym)) {
+  //       console.log(teamGroups.groupA)
+  //     }
+  //   }, {groupA: [], groupB: []}))
+  // }
+
+  let groupCards = (<div>No team data</div>);
+
+  if (allTeams) {
+        allTeams.reduce((teamGroups, team) => {
       if(groupARef.includes(team.acronym)) {
-        return <TeamCard acronym={team.acronym}/>
-      }
+        teamGroups.groupA.push(<TeamCard acronym={team.acronym}/>)
+      } else {
+        teamGroups.groupB.push(<TeamCard acronym={team.acronym}/>)
+      } 
+      return teamGroups;
     }, {groupA: [], groupB: []})
   }
 
   return (
     <section className='teams-content-container'>
-      {buildGroupCards()}
+      {groupCards}
+      <div>
+        <h1>Group A</h1>
+        {groupCards.groupA}
+      </div>
+      <div>
+        <h1>Group B</h1>
+        {groupCards.groupB}
+      </div>
     </section>
   )
 }
