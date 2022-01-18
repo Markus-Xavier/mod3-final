@@ -1,25 +1,37 @@
 const apiKey = process.env.REACT_APP_API_KEY;
+const baseUrl = 'https://api.pandascore.co/lol/';
+
+const eatConsoleError = (error) => {
+  throw error;
+}
+
+const checkIfOk = (response) => {
+  if (response.ok) {
+    return response.json()
+  }
+  throw new Error('Something went wrong...')
+}
 
 export const getTournamentData = () => {
-  return fetch(`https://api.pandascore.co/lol/tournaments?token=${apiKey}&filter[name]=Group A, Group B, Playoffs&filter[tier]=&filter[serie_id]=4260`)
-    .then(response => response.json())
-    .then(data => data.reverse())
-    .catch(error => console.log(error));
+  return fetch(`${baseUrl}tournaments?token=${apiKey}&filter[name]=Group A, Group B, Playoffs&filter[tier]=&filter[serie_id]=4260`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
 }
 
 export const getFavoriteTeamMatchHistory = (favoriteTeam) => {
-  return fetch(`https://api.pandascore.co/lol/matches?token=${apiKey}&filter[opponent_id]=${favoriteTeam}&filter[serie_id]=4260&filter[status]=finished`)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      return data;
-    } )
-    .catch(error => console.log(error));
+  return fetch(`${baseUrl}matches?token=${apiKey}&filter[opponent_id]=${favoriteTeam}&filter[serie_id]=4260&filter[status]=finished`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
 }
 
 export const getFavoriteTeam = (favoriteTeamId) => {
-  return fetch(`https://api.pandascore.co/lol/teams?token=${apiKey}&filter[id]=${favoriteTeamId}`)
-    .then(response => response.json())
-    .then(data => data)
-    .catch(error => console.log(error));
+  return fetch(`${baseUrl}teams?token=${apiKey}&filter[id]=${favoriteTeamId}`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
+}
+
+export const brokenApiCall = () => {
+  return fetch(`${baseUrl}teams`)
+    .then(checkIfOk)
+    .catch(eatConsoleError)
 }

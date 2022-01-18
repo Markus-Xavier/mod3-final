@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { getTournamentData, getFavoriteTeamMatchHistory, getFavoriteTeam  } from '../../ApiCalls/apiCalls';
+import { getTournamentData, getFavoriteTeamMatchHistory, getFavoriteTeam, brokenApiCall  } from '../../ApiCalls/apiCalls';
 import './App.css';
 import { Header } from '../Header/Header';
 import { MatchesContainer } from '../MatchesContainer/MatchesContainer';
 import { TeamsContainer } from '../TeamsContainer/TeamsContainer';
+import { Error } from '../Error/Error';
 
 export default function App() {
+  const [error, setError] = useState(null);
   const [favoriteTeam, setFavoriteTeam] = useState(-1);
   const [favoriteTeamData, setFavoriteTeamData] = useState([]);
   const [tournamentData, setTournamentData] = useState([]);
@@ -20,6 +22,11 @@ export default function App() {
 
     getTournamentData()
       .then(setTournamentData);
+
+    // brokenApiCall()
+    //   .catch(error => {
+    //     setError(error.message)
+    //   });
   }, []);
 
   useEffect(() => {
@@ -39,6 +46,9 @@ export default function App() {
   };
 
   return (
+    error !== null ?
+        <Error error={error} />
+      :
     <main className="App">
       <Header favoriteTeamData={favoriteTeamData}/>
       <Routes>
