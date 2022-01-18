@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import './Header.css';
 import { Link } from "react-router-dom";
 
@@ -24,4 +25,8 @@ export function Header ({favoriteTeamData}) {
       {favoriteTeamImg}
     </header>
   )
+}
+
+Header.propTypes = {
+  favoriteTeamData: PropTypes.array
 }

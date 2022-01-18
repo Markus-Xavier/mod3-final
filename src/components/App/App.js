@@ -17,31 +17,36 @@ export default function App() {
   useEffect(() => {
     const teamId = localStorage.getItem('favoriteTeam');
     if (teamId) {
-      setFavoriteTeam(teamId)
+      setFavoriteTeam(JSON.parse(teamId))
     }
 
     getTournamentData()
-      .then(setTournamentData);
+      .then(setTournamentData)
+      .catch(error => {
+        setError(error.message)
+      });
 
-    // brokenApiCall()
-    //   .catch(error => {
-    //     setError(error.message)
-    //   });
   }, []);
 
   useEffect(() => {
     if (favoriteTeam) {
       getFavoriteTeamMatchHistory(favoriteTeam)
-        .then(setFavoriteTeamMatchData);
+        .then(setFavoriteTeamMatchData)
+        .catch(error => {
+          setError(error.message)
+        });
 
       getFavoriteTeam(favoriteTeam)
         .then(data => data)
-        .then(setFavoriteTeamData);
+        .then(setFavoriteTeamData)
+        .catch(error => {
+          setError(error.message)
+        });
     }
   }, [favoriteTeam]);
 
   const changeFavoriteTeam = (id) => {
-    setFavoriteTeam(id.toString());
+    setFavoriteTeam(id);
     localStorage.setItem('favoriteTeam', id);
   };
 

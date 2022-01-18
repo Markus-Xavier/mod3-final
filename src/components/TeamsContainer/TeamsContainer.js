@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import './TeamsContainer.css';
 import { TeamCard } from "../TeamCard/TeamCard";
 
@@ -32,4 +33,8 @@ export function TeamsContainer({ tournamentData, changeFavoriteTeam }) {
       {groupCards}
     </section>
   )
+}
+TeamsContainer.propTypes = {
+  changeFavoriteTeam: PropTypes.func,
+  tournamentData: PropTypes.array
 }

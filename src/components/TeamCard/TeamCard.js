@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import './TeamCard.css';
 
 export function TeamCard({acronym, name, id, image_url, changeFavoriteTeam}) {
@@ -13,4 +14,11 @@ export function TeamCard({acronym, name, id, image_url, changeFavoriteTeam}) {
       <div>{name}</div>
     </li>
   )
+}
+TeamCard.propTypes = {
+  acronym: PropTypes.string,
+  changeFavoriteTeam: PropTypes.func,
+  id: PropTypes.number,
+  image_url: PropTypes.string,
+  name: PropTypes.string
 }

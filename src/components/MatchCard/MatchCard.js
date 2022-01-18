@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import './MatchCard.css';
 
-export function MatchCard ({ teams, isWin, id}) {
+export function MatchCard ({ teams, isWin }) {
   const winStyling = (isWin ? 'victory-background' : 'defeat-background') + ' match-container';
 
   return (
@@ -15,4 +16,8 @@ export function MatchCard ({ teams, isWin, id}) {
       </div>
     </article>
   )
+}
+MatchCard.propTypes = {
+  isWin: PropTypes.bool,
+  teams: PropTypes.array
 }
