@@ -1,6 +1,5 @@
 import React from "react";
 import './Header.css';
-import historyImg from '../../assets/images/history.svg'
 import { Link } from "react-router-dom";
 
 export function Header ({favoriteTeamData}) {
