@@ -1,9 +1,10 @@
 const apiKey = process.env.REACT_APP_API_KEY;
+const teamAcronyms = 'GG, TSM, FLY, EG, IMT, TL, 100, CLG, DIG, C9';
 
 export const fetchTeamData = () => {
-  fetch(`https://api.pandascore.co/lol/teams?filter[location]=US&token=${apiKey}`)
+  return fetch(`https://api.pandascore.co/lol/teams?filter[location]=US, GB, NL&token=${apiKey}&filter[acronym]=${teamAcronyms}`)
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => data)
     .catch(error => console.log(error))
 }
 

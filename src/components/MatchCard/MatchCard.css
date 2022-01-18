@@ -23,3 +23,11 @@
   margin-left: 30px;
   margin-right: 30px;
 }
+
+.victory-background {
+  background-color: #6557FF;
+}
+
+.defeat-background {
+  background-color: #FF1F1F;
+}

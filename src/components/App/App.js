@@ -4,24 +4,26 @@ import { fetchTournamentData, fetchMatchData, fetchTeamData, fetchGameData, getS
 import './App.css';
 import { Header } from '../Header/Header';
 import { MatchesContainer } from '../MatchesContainer/MatchesContainer';
+import { Teams } from '../TeamsContainer/TeamsContainer';
 
 export default function App() {
-  const [favoriteTeam, setFavoriteTeam] = useState(null);
+  const [favoriteTeam, setFavoriteTeam] = useState(387);
+  const [allTeams, setAllTeams] = useState(null);
 
   useEffect(() => {
-    //fetchMatchData();
-    //fetchTeamData();
-    //fetchGameData();
-    //fetchTournamentData();
-    //getSeriesData();
+    fetchTeamData()
+      .then(setAllTeams)
   }, [])
 
   return (
     <main className="App">
       <Header />
       <Routes>
+      <Route path='/' element={
+        <Teams allTeams={allTeams}/>
+      }/>
         <Route path='/match-history' element={
-          <MatchesContainer />
+          <MatchesContainer favoriteTeam={favoriteTeam}/>
         }/>
         <Route path='/upcoming' element={
           <MatchesContainer />

@@ -4,7 +4,7 @@ import './MatchesContainer.css';
 import { MatchCard } from "../MatchCard/MatchCard";
 import { fetchMatchData, getSeriesData, getTournamentData } from "../../ApiCalls/apiCalls";
 
-export function MatchesContainer () {
+export function MatchesContainer ({ favoriteTeam }) {
   const { pathname } = useLocation();
   const [matchData, setMatchData] = useState(null);
   const [dog, setDog] = useState(null);
@@ -36,7 +36,9 @@ export function MatchesContainer () {
           .then(sortedCombinedData => {
             const matchIds = getDataIds(sortedCombinedData).join(', ');
             fetchMatchData(matchIds)
+              .then(filterByFavoriteTeam)
               .then(setMatchData)
+
           })
           .catch(error => console.log(error));
         break;
@@ -70,6 +72,16 @@ export function MatchesContainer () {
     });
   }
 
+  const filterByFavoriteTeam = (matches) => {
+    return matches.filter(match => {
+      if (match.opponents[0].opponent.id === favoriteTeam || match.opponents[1].opponent.id === favoriteTeam) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+  }
+
   const getPastMatchData = (tournaments) => {
     const filteredPastTournaments = filterDataByDates(tournaments);
     return filteredPastTournaments.map(tournament => filterDataByDates(tournament.matches));
@@ -89,7 +101,7 @@ export function MatchesContainer () {
     if(matchData) {
       return matchData.map(data => {
         return (
-          <MatchCard teams={data.opponents} winner_id={data.winner_id} key={data.id}/>
+          <MatchCard teams={data.opponents} winner_id={data.winner_id} key={data.id} favoriteTeam={favoriteTeam}/>
         )
       })
     }
