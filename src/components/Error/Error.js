@@ -4,9 +4,9 @@ import './Error.css';
 
 export function Error({ error }) {
   return (
-    <div>
+    <p>
       {error}
-    </div>
+    </p>
   )
 }
 

@@ -154,3 +154,19 @@ describe('Match History Loading Tests', () => {
     .should('exist')
   })
 })
+
+describe('Error Tests', () => {
+  beforeEach(() => {
+    cy.clearLocalStorage();
+    cy.intercept('GET', 'https://api.pandascore.co/lol/tournaments?*', {
+      statusCode: 401
+    });
+    cy.visit('http://localhost:3000')
+  })
+
+  it('As a user if a fetch call gets an error I should be informed', () => {
+    cy.get('p')
+      .contains('Something went wrong...')
+      .should('exist')
+  })
+})
