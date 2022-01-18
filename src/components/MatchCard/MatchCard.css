@@ -1,11 +1,11 @@
 .match-container {
   width: 846px;
   height: 106px;
-  border: black solid 3px;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 16px;
 }
 
 .team-logo {
@@ -25,9 +25,9 @@
 }
 
 .victory-background {
-  background-color: #6557FF;
+  background-color: rgba(51, 71, 255, 65%);
 }
 
 .defeat-background {
-  background-color: #FF1F1F;
+  background-color: rgba(255, 60, 60, 65%);
 }
