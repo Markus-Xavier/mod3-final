@@ -1,5 +1,5 @@
 const apiKey = process.env.REACT_APP_API_KEY;
-const baseUrl = 'https://api.pandascore.co/lol/';
+const baseUrl = 'https://api.codetabs.com/v1/proxy?quest=' + 'https://api.pandascore.co/lol/';
 
 const eatConsoleError = (error) => {
   throw error;
