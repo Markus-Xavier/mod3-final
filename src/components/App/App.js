@@ -7,7 +7,7 @@ import { MatchesContainer } from '../MatchesContainer/MatchesContainer';
 import { TeamsContainer } from '../TeamsContainer/TeamsContainer';
 
 export default function App() {
-  const [favoriteTeam, setFavoriteTeam] = useState(387);
+  const [favoriteTeam, setFavoriteTeam] = useState(-1);
   const [tournamentData, setTournamentData] = useState([]);
   const [favoriteTeamMatchData, setFavoriteTeamMatchData] = useState([]);
 
@@ -29,7 +29,7 @@ export default function App() {
   }, [favoriteTeam]);
 
   const changeFavoriteTeam = (id) => {
-    setFavoriteTeam(id);
+    setFavoriteTeam(id.toString());
     localStorage.setItem('favoriteTeam', id);
   };
 

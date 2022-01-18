@@ -4,10 +4,11 @@ import { MatchCard } from "../MatchCard/MatchCard";
 
 export function MatchesContainer ({ favoriteTeam, matchData }) {
   const sortTeams = (a) => {
+    console.log(a, favoriteTeam)
     if (a.opponent.id.toString() === favoriteTeam) {
       return -1;
     }
-    return 0;
+    return 1;
   };
 
   let matches = (<p>No match data...</p>); 
