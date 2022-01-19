@@ -7,6 +7,7 @@ export function MatchCard ({ teams, isWin }) {
 
   return (
     <article className={winStyling}>
+      {isWin ? <p className='win-condition'>VICTORY</p> : <p className='win-condition'>DEFEAT</p>}
       <div className='match-content-container'>
         <h1>{teams[0].opponent.acronym}</h1>
         <img className='team-logo' src={teams[0].opponent.image_url} alt='Team Logo' />

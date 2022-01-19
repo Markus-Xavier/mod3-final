@@ -17,7 +17,7 @@ export default function App() {
   useEffect(() => {
     const teamId = localStorage.getItem('favoriteTeam');
     if (teamId) {
-      setFavoriteTeam(JSON.parse(teamId))
+      changeFavoriteTeam(JSON.parse(teamId))
     }
 
     getTournamentData()
