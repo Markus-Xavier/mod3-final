@@ -18,6 +18,7 @@
 .match-content-container {
   display: flex;
   align-items: center;
+  margin-right: auto;
 }
 
 .match-content-container * {
@@ -31,4 +32,10 @@
 
 .defeat-background {
   background-color: rgba(255, 60, 60, 65%);
+}
+
+.win-condition {
+  margin-right: auto;
+  margin-left: 16px;
+  font-size: large;
 }
