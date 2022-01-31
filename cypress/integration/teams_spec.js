@@ -23,7 +23,7 @@ describe('Teams Page', () => {
   });
 
   it('As a user when I click on a team its logo should go into the header', () => {
-    cy.get('li[className="hover-animation"]')
+    cy.get('.hover-animation')
       .first()
       .click()
     
